@@ -14,7 +14,8 @@ router.param("item", function(req, res, next, slug) {
       if (!item) {
         return res.sendStatus(404);
       }
-
+      
+      if(item.image === "") item.image = "http://localhost:3001/placeholder.png";
       req.item = item;
 
       return next();
@@ -147,7 +148,6 @@ router.post("/", auth.required, function(req, res, next) {
       var item = new Item(req.body.item);
 
       item.seller = user;
-      items.image?items.image:"placeholder"
 
       return item.save().then(function() {
         sendEvent('item_created', { item: req.body.item })
