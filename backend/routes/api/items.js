@@ -147,7 +147,7 @@ router.post("/", auth.required, function(req, res, next) {
       var item = new Item(req.body.item);
 
       item.seller = user;
-      if(item.image==="")     item.image="http://localhost:3001/placeholder.png"
+      items.image?items.image:"placeholder"
 
       return item.save().then(function() {
         sendEvent('item_created', { item: req.body.item })
