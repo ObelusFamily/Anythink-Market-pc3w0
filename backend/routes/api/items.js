@@ -14,7 +14,6 @@ router.param("item", function(req, res, next, slug) {
       if (!item) {
         return res.sendStatus(404);
       }
-      if(item.image === "") item.image = "placeholder.png";
       req.item = item;
 
       return next();
@@ -165,6 +164,7 @@ router.get("/:item", auth.optional, function(req, res, next) {
   ])
     .then(function(results) {
       var user = results[0];
+      if(item.image === "") item.image = "placeholder.png";
 
       return res.json({ item: req.item.toJSONFor(user) });
     })
