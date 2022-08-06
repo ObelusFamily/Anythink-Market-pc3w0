@@ -14,7 +14,7 @@ router.param("item", function(req, res, next, slug) {
       if (!item) {
         return res.sendStatus(404);
       }
-      if(item.image === "") item.image = "http://localhost:3001/placeholder.png";
+      if(item.image === "") item.image = "/placeholder.png";
       req.item = item;
 
       return next();
