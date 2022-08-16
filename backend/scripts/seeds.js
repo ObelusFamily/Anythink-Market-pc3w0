@@ -19,20 +19,20 @@ async function main() {
   connectedToDatabase();
   for (let i = 0; i < 100; i++) {
     const user = new User();
-    user.username = user${i};
-    user.email = user${i}@gmail.com;
+    user.username = `user${i}`;
+    user.email = `user${i}@gmail.com`;
     await user.save();
 
     const item = new Item({
-      slug: slug${i},
-      title: title ${i},
-      description: description ${i},
+      slug: `slug ${i}`,
+      title: `title ${i}`,
+      description: `description y${i}`,
       seller: user,
     });
     await item.save();
 
     const comment = new Comment({
-      body: body ${i},
+      body: `body ${i}`,
       seller: user,
       item: item,
     });
@@ -46,6 +46,6 @@ main()
     process.exit(0);
   })
   .catch((err) => {
-    console.log(Error while running DB seed: ${err.message});
+    console.log(`Error while running DB seed: ${err.message}`);
     process.exit(1);
   });
